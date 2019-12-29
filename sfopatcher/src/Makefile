@@ -1,8 +1,8 @@
 CC=gcc
-CFLAGS=-g -O0 -Wall -I../include -I../include/polarssl
-OS_TARGET=pfdtool
+CFLAGS=-g -O0 -Wall -I../include
+OS_TARGET=sfopatcher
 LDFLAGS=-lz
-OBJS=backend.o config.o list.o main.o pfd.o platform.o util.o wildcard.o aes.o sha1.o
+OBJS=sfo.o list.o main.o util.o
 
 .SILENT:
 .SUFFIXES: .c .cpp .o

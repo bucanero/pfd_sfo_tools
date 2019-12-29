@@ -9,8 +9,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef unsigned __int64 u64;
-typedef signed __int64 s64;
+#if defined(_WIN32) && defined(_MSC_VER)
+        typedef __int64 s64;
+        typedef unsigned __int64 u64;
+#else
+        typedef long long int s64;
+        typedef unsigned long long int u64;
+#endif
+
 typedef unsigned long int u32;
 typedef signed long int s32;
 typedef unsigned short int u16;
