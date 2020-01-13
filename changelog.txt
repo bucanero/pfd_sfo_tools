@@ -1,0 +1,26 @@
+pfdtool 0.2.3
+	- Added an option to specify the relative offset to advance each time while bruteforcing a secure file ID.
+
+sfopatcher 0.2.0
+	- Now the tool doesn't copy PARAMS and SAVEDATA_DIRECTORY parameters. Use new options if you want them.
+
+pfdtool 0.2.2
+	- Now encrypt and decrypt operations update hashes automatically (be sure to use all keys!).
+	- Fixed another issue with the file size of modified files.
+	- Removed a verbose flag because it is not used at the moment.
+
+pfdtool 0.2.1
+	- Fixed issues with the file size.
+
+pfdtool 0.2.0
+	- Support of PARAM.PFD for trophies (without keys, of course).
+	- Support of PARAM.PFD v4 which used in a newer SDK.
+	- Fixed a bug with verify operation on signature hashes.
+	- Now you can use a list of product codes delimeted by '/' (slash), for example: [BLUS31142/BLES01403], they should use the same disc hash key and secure file IDs.
+	- Show an information about .PFD type and version.
+
+sfopatcher 0.1.0
+	- Initial release.
+
+pfdtool 0.1.0
+	- Initial release.
