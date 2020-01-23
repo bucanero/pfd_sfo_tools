@@ -13,16 +13,16 @@
         typedef __int64 s64;
         typedef unsigned __int64 u64;
 #else
-        typedef long long int s64;
-        typedef unsigned long long int u64;
+        typedef int64_t s64;
+        typedef uint64_t u64;
 #endif
 
-typedef unsigned long int u32;
-typedef signed long int s32;
-typedef unsigned short int u16;
-typedef signed short int s16;
-typedef unsigned char u8;
-typedef signed char s8;
+typedef uint32_t u32;
+typedef int32_t s32;
+typedef uint16_t u16;
+typedef int16_t s16;
+typedef uint8_t u8;
+typedef int8_t s8;
 
 #define ES16(_val) \
 	((u16)(((((u16)_val) & 0xff00) >> 8) | \
