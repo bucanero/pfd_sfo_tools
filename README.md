@@ -39,3 +39,12 @@ COMMANDS Parameters         Explanation
  -h, --help                 Print this help
  -v, --verbose              Enable verbose output
  ```
+
+### Usage with Docker
+
+Users can build and run the Docker container for `sfopatcher` and `pfdtool` with the following Docker CLI commands:
+
+```sh
+docker build -t [image-name] .
+docker run [optional-flags] [image-name]
+```
