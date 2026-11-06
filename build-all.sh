@@ -27,6 +27,12 @@ else
 fi
 
 want="$*"
+for requested in "$@"; do
+	case "$requested" in
+		windows-amd64|windows-arm64|linux-amd64|linux-arm64|macos-amd64|macos-arm64) ;;
+		*) printf 'Unknown platform: %s\n' "$requested" >&2; exit 1 ;;
+	esac
+done
 echo "$PLATFORMS" | while read -r name target ext; do
 	[ -n "$name" ] || continue
 	if [ -n "$want" ] && ! echo " $want " | grep -q " $name "; then continue; fi
@@ -36,7 +42,7 @@ echo "$PLATFORMS" | while read -r name target ext; do
 	mkdir -p "$out"
 	for tool in pfdtool sfopatcher; do
 		make -C "$tool/src" -s CC="$ZIG cc -target $target" OPT="-O2" LDFLAGS="-s" EXT="$ext" \
-			BUILD="$out" OBJDIR="$PWD/build/obj/$name/$tool" >/dev/null
+			BUILD="../../build/$name" OBJDIR="../../build/obj/$name/$tool" >/dev/null
 	done
 	cp pfdtool/bin/*.conf "$out/"
 done
