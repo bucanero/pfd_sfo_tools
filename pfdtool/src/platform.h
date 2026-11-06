@@ -11,9 +11,14 @@ u64 get_page_size(void);
 
 #	define MAP_SHARED 2
 #	define MAP_PRIVATE 3
+#	define MAP_FAILED ((void *)-1)
 
 	void * mmap(void *start, size_t size, int protection, int flags, int fd, ptrdiff_t offset);
 	int munmap(void *start, size_t size);
+#endif
+
+#if !defined(O_BINARY)
+#	define O_BINARY 0
 #endif
 
 #endif /* !_PLATFORM_H_ */

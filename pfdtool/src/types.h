@@ -8,6 +8,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -19,9 +20,11 @@
 #	include <windows.h>
 #	include <io.h>
 #
-#	define snprintf _snprintf
-#	define fileno _fileno
-#	define strncasecmp strnicmp
+#	if defined(_MSC_VER)
+#		define snprintf _snprintf
+#		define fileno _fileno
+#		define strncasecmp strnicmp
+#	endif
 #else
 #	include <unistd.h>
 #	include <sys/mman.h>
@@ -77,7 +80,6 @@ typedef int8_t s8;
 	       ((((u64)_val) & 0x00000000000000ffull) << 56)))
 
 #define countof(_array) (sizeof(_array) / sizeof(_array[0]))
-#define offsetof(_type, _member) ((size_t)((char *)&((_type *)0)->_member - (char *)0))
 
 #define min(_a, _b) ((_a) < (_b) ? (_a) : (_b))
 #define max(_a, _b) ((_a) > (_b) ? (_a) : (_b))

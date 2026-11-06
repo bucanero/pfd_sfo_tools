@@ -133,7 +133,7 @@ int mmap_file(const char *file_path, u8 **data, u64 *size) {
 	if (!file_path || !data || !size)
 		return -1;
 
-	fd = open(file_path, O_RDONLY);
+	fd = open(file_path, O_RDONLY | O_BINARY);
 	if (fd == -1)
 		return -1;
 
@@ -143,7 +143,7 @@ int mmap_file(const char *file_path, u8 **data, u64 *size) {
 	}
 
 	ptr = mmap(NULL, stat_buf.st_size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);
-	if (!ptr) {
+	if (ptr == MAP_FAILED) {
 		close(fd);
 		return -1;
 	}
