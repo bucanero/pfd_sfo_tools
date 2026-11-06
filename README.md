@@ -1,5 +1,6 @@
 # PFD/SFO tools
-flatz's pdf/sfo tools
+
+[flatz](https://github.com/flatz)'s PFD/SFO tools for PS3 saves and trophy files.
 
 ## pfdtool v0.2.3
 
