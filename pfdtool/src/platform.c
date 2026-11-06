@@ -25,15 +25,15 @@ u64 get_page_size(void) {
 		HANDLE map_handle;
 
 		if (start || !(flags & MAP_PRIVATE))
-			return NULL;
+			return MAP_FAILED;
 		if (offset % get_page_size() != 0)
-			return NULL;
+			return MAP_FAILED;
 
 		map_handle = CreateFileMapping((HANDLE)_get_osfhandle(fd), NULL, PAGE_WRITECOPY, 0, 0, NULL);
 		if (map_handle)
 			start = MapViewOfFile(map_handle, FILE_MAP_COPY, 0, offset, size);
 
-		return start;
+		return start ? start : MAP_FAILED;
 	}
 
 	int munmap(void *start, size_t size) {

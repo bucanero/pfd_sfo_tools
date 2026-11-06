@@ -48,3 +48,23 @@ Users can build and run the Docker container for `sfopatcher` and `pfdtool` with
 docker build -t [image-name] .
 docker run [optional-flags] [image-name]
 ```
+
+### Cross-compiling
+
+`build-all.sh` builds both tools for every supported platform using [zig](https://ziglang.org) as the C cross-compiler:
+
+```sh
+./build-all.sh              # all platforms
+./build-all.sh linux-arm64  # just one
+```
+
+Binaries are written to `build/<platform>/` together with the `.conf` files `pfdtool` needs.
+
+| Platform | Target |
+| --- | --- |
+| `windows-amd64` | `x86_64-windows-gnu` |
+| `windows-arm64` | `aarch64-windows-gnu` |
+| `linux-amd64` | `x86_64-linux-musl` |
+| `linux-arm64` | `aarch64-linux-musl` |
+| `macos-amd64` | `x86_64-macos` |
+| `macos-arm64` | `aarch64-macos` |

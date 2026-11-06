@@ -1,14 +1,19 @@
 CC=gcc
-CFLAGS=-g -O0 -Wall -I../include
-OS_TARGET=sfopatcher
-LDFLAGS=-lz
-OBJS=sfo.o list.o main.o util.o
+OPT=-g -O0
+CFLAGS=$(OPT) -Wall -I../include
+EXT=
+BUILD=.
+OBJDIR=$(BUILD)
+OS_TARGET=$(BUILD)/sfopatcher$(EXT)
+LDFLAGS=
+OBJS=$(addprefix $(OBJDIR)/,sfo.o list.o main.o util.o)
 
 .SILENT:
 .SUFFIXES: .c .cpp .o
 
 $(OS_TARGET): $(OBJS)
 	${LINK}
+	mkdir -p $(BUILD)
 	if $(CC) $(CFLAGS) $(OBJS) -o $(OS_TARGET) $(LDFLAGS) $(LIBS); then \
 		${LINK_OK}; \
 	else \
@@ -16,16 +21,18 @@ $(OS_TARGET): $(OBJS)
 	fi
 	
 
-%.o: %.c
+$(OBJDIR)/%.o: %.c
 	${COMPILE_STATUS}
+	mkdir -p $(OBJDIR)
 	if ${CC} ${CFLAGS} ${CFLAGS} -c -o $@ $<; then \
 		${COMPILE_OK}; \
 	else \
 		${COMPILE_FAILED}; \
 	fi
 
-%.o: %.cpp
+$(OBJDIR)/%.o: %.cpp
 	${COMPILE_STATUS}
+	mkdir -p $(OBJDIR)
 	if ${CC} ${CFLAGS} ${CFLAGS} -c -o $@ $<; then \
 		${COMPILE_OK}; \
 	else \
@@ -34,7 +41,7 @@ $(OS_TARGET): $(OBJS)
 
 clean:
 	@printf "\033[K\033[0;32mCleaning\033[1;32m\033[0;32m...\033[0m\n"
-	rm -rf *.o $(OS_TARGET)
+	rm -rf $(OBJS) $(OS_TARGET)
 
 install:
 	@printf "\033[K\033[0;32mInstalling\033[1;32m\033[0;32m...\033[0m\n"

@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <limits.h>
 #include <stdarg.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,9 +48,6 @@ typedef int8_t s8;
 #define LE16(_val) ((_val) & 0xffffu)
 #define LE32(_val) ((_val) & 0xffffffffu)
 #define LE64(_val) ((_val) & 0xffffffffffffffffu)
-
-#define offsetof(_type, _member) \
-     ((size_t)((char *)&((_type *)0)->_member - (char *)0))
 
 #define countof(_array) (sizeof(_array) / sizeof(_array[0]))
 
