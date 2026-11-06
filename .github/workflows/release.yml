@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'Release name'
+        description: 'Release flatz PFD SFO tools'
         required: true
         type: string
 
